@@ -5,36 +5,36 @@ Keep this README focused on what the design does, how it is used, and how it was
 verified.
 -->
 ## Design Scope and Assumptions
-- **In scope:** [What this lab implements]
-- **Out of scope:** [What this lab intentionally does not implement]
-- **Assumptions:** [Clock frequency, reset behavior, data width, memory model, or
-other assumptions]
-- **Limitations:** [Known limitations or simplified behaviors]
+- **In scope:** This lab implements an instruction execute in verilog.
+- **Out of scope:** Fetch, Decode, Memory Access, Writeback
+- **Assumptions:** All unconnected wires will route to other pipeline states in the future.
+- **Limitations:** Limited to 32 bit bus
 ## Requirements
 | Requirement | Description | Verification Method |
 |---|---|---|
-| REQ-01 | [The design shall ...] | [Test case, waveform, calculation, or
-inspection] |
-| REQ-02 | [The design shall ...] | [Test case, waveform, calculation, or
-inspection] |
-| REQ-03 | [The design shall ...] | [Test case, waveform, calculation, or
-inspection] |
-## Architecture
-### Timing or Behavioral Summary
-Save diagrams in the repository's `images/` folder. Use relative paths so they
-display on GitHub.
-![Timing Diagram](images/[timing-diagram-filename].png)
+| Adder |  | Test case, waveform, inspection |
+| Top Mux | Adds the sign extend output with the NPC output | Test case, waveform, inspection |
+| ALU | Performs arithmetic operations | Test case, waveform, inspection |
+| ALU Control | Sends commands to the ALU | Test case, waveform, inspection |
+| Bottom Mux | Decides whether the sign extend or Read Data 2 gets passed to the ALU | Test case, waveform, inspection |
+| EX/MEM Latch | Holds and passes data on to the next pipeline stage | Test case, waveform, inspection |
+| Execute | Ties all 6 minor modules together into overall instruction execute | Test case, waveform, inspection |
+
 ## Implementation
 ### Source Code
 | File | Description |
 |---|---|
-| [`[module].v`](LINK_TO_IMPLEMENTATION_CODE) | [Primary implementation module] |
-| [`[component].v`](LINK_TO_COMPONENT_CODE) | [Supporting component] |
-| [`[testbench].v`](LINK_TO_TESTBENCH_CODE) | [Verification testbench] |
+| [`adder.v`](LINK_TO_IMPLEMENTATION_CODE) | Source code for adder module] |
+| [`top_mux.v`](LINK_TO_COMPONENT_CODE) | Source code for top mux module |
+| [`bottom_mux.v`](LINK_TO_TESTBENCH_CODE) | Source code for bottom mux module |
+| [`alu_control.v`](LINK_TO_IMPLEMENTATION_CODE) | Source code for alu control module |
+| [`alu.v`](LINK_TO_IMPLEMENTATION_CODE) | Source code for alu module |
+| [`EXMEM_Latch.v`](LINK_TO_IMPLEMENTATION_CODE) | Source code for EX/MEM latch module |
+| [`Execute.v`](LINK_TO_IMPLEMENTATION_CODE) | Source code for execute module |
 ### Implementation Notes
-- [Explain one important design decision.]
-- [Identify any parameterization, reusable module, or interface convention.]
-- [Document any deliberate simplification made for this lab.]
+- ALU ops include subtract, and, or, and slt operations.
+- Execute, ALU, Adder are reusable
+- Modules wired to other pipeline stages left disconnected
 ## Verification
 ### Verification Strategy
 The design is verified using **[simulation, formal checks, hardware testing, or
