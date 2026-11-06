@@ -12,11 +12,11 @@ verified.
 ## Requirements
 | Requirement | Description | Verification Method |
 |---|---|---|
-| Adder |  | Test case, waveform, inspection |
-| Top Mux | Adds the sign extend output with the NPC output | Test case, waveform, inspection |
+| Adder | Adds the sign extend output with the NPC output | Test case, waveform, inspection |
+| Top Mux | Decides whether the sign extend or Read Data 2 gets passed to the ALU | Test case, waveform, inspection |
 | ALU | Performs arithmetic operations | Test case, waveform, inspection |
 | ALU Control | Sends commands to the ALU | Test case, waveform, inspection |
-| Bottom Mux | Decides whether the sign extend or Read Data 2 gets passed to the ALU | Test case, waveform, inspection |
+| Bottom Mux | Decide whether instruction[20:16] or instruction[15:11] gets passed to next stage | Test case, waveform, inspection |
 | EX/MEM Latch | Holds and passes data on to the next pipeline stage | Test case, waveform, inspection |
 | Execute | Ties all 6 minor modules together into overall instruction execute | Test case, waveform, inspection |
 
